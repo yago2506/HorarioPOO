@@ -1,0 +1,71 @@
+Nivel 1:
+Clase principal HorarioAsignatura
+	Constructor:
+		-new ...(grado, CursoEnum.año, Semestre.epoca)
+	metodos:
+		-IncripcionAsigantura(ID,Nombre,Practica o teoria(solo se escribe "P" si es practica),DiasemanaEnum.dia,Hora)
+		-ComprobarIncompatibilidades():
+		-mostrarHorario(),mostrarHorario("P")->con la "P" muestra solo las clases que sean practicas
+		-mostrarInformacionBasica() -> grado, curso, epoca
+		-CalculaHoras(duracionclase)
+		-Vaciar
+
+Nivel 2:
+Clase Asignatura
+	new ...(ID,Nombre,Tipo (P o T)) 
+Clase Horario
+	new ...(DiasemanaEnum.dia,Hora)
+
+	metodos de ambas:
+		-añadir, 
+		-modificar -> Me dijo que podemos poner las caracteristicas que queramos a modificar, simplemente cuando mas complejo sea pues mas puntuara,
+				podemos por ejemplo hacer que el codigo sea fijo y ese no se pueda cambiar, que el nombre sea fijo, que solo se pueda cambiar una cosa,
+				modificar todo, etc (quiza lo mejor es preguntar en el menu que asignatura quiere cambiar, luego si quiere cambiar hora o algo de la asignatura y 
+				ahi pedir que vuelva a escribir todo de nuevo; entonces simplemente eliminamos el anterior y creamos uno nuevo de 0)
+		-¿eliminiar? -> este quiza no nos hace falta pero por si acaso lo pongo aqui
+
+Nivel 3:
+Clase DiaSemanaEnum
+Clase CursoEnum
+	CREO que no les hace falta constructor, ya que los llamarias como metodos (ej: DiasemanaEnum.LUNES -> devolveria LUNES)
+	
+	metodos:
+		-Filtrar -> Supongo que ira aqui, con lo que introduzca el usuario trabajarlo para que al final se puede devolver un dia del enum, 
+				ej: el usuario introduce en el curso 3, pues relacionar ese 3 con el CursoEnum.TERCERO
+
+
+Excepciones que tiene que tener el codigo:
+-NO es hora valida (solo son validas 8,10,12,15,17,19), esta excepcion tiene que impedir escribir la asignatura en el horario -> meter el error en el metodo IncripcionAsigantura
+-Caracter no valido
+-Horario no compatible, (dos clases a la misma hora), este error tiene que mostrar AL MENOS (dijo que mas de 1 es bastante dificil de hacer, pero se puede intentar xd),
+		y tiene que permitir que se metan las horas al horario aunque esten duplicadas, osea, tiene que avisar del error pero tiene que permirtir que se cometa 
+		-> meter el error en el metodo ComprobarIncompatibilidades():
+
+
+
+
+
+Ideas de como montar el codigo: 
+  1- 	Recomendacion de el:
+	mirar hash map para montar esto: https://www.w3schools.com/java/java_hashmap.asp
+
+  2-	Lo que habia pensado yo antes:
+	Arraylist doble horarioaginatura[horario][Asignatura] 
+	-inicializas todo asignatura como NULL y las fechas todas las fechas ya metidas 
+	
+
+
+
+
+Pregunta que me quede con la duda:
+-Hay que hacer que Cuarto = Ultimo como sale en el PDF?
+
+Preguntas que me respondio:
+-Para comparar las clases horario (hora + dia) se haria con equal o ==?  -> dos objetos no se comparan aunque sean iguales, habria que comparar el valor de cada una
+-mostrarHorario son dos metodos diferentes?, solo deberia de funcionar con la P? -> Se pueden crear dos metodos con el mismo nombre pero diferentes argumentos
+-entregarlo por git o mi aulario? si lo hacemos varios como habia que ponerlo? -> se puede entregar por ambos, con ponerlo en el nombre o el recuadro sirve
+-en cada accion realizada tiene que printear -> fijarse en el pdf los que muestra y hacer que muestre esos
+-donde almacenar excepciones -> no hace falta, se pueden mostrar simplemente por pantalla
+-el enum -> es una clase especial definida por java para que siempre muestre lo mismo, se puede usar como metodo de alguna otra clase 
+		y al pedir al usuario (ej: pides curso: el usuario escribe 1 pero tu lo tienes como letras, pues tienes que tratar ese dato
+		para que se relacione como uno del enum; osea el usuario escribe 1, tu tienes que mostrar PRIMERO a traves del enum)
