@@ -37,7 +37,7 @@ public class HorarioAsignaturas {
     
     public void mostrarHorario()
     { 
-        Horario_has.forEach((Asignatura key, Horario value)->
+        Horario_has.forEach((key, value)->
         {                                    
             System.out.println("es instaceof key");
 //            key.mostrar(); // no entiendo porque si es clase asignatura no me deja usar su metodo            
