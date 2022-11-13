@@ -22,10 +22,10 @@ public class HorarioPOO_enunciado {
 
     public static final int DURACION_CLASES = 2;
     
-    enum Semestre {
-        OTOÑO,
-        PRIMAVERA
-    }
+//    public static enum Semestre {
+//        OTOÑO,
+//        PRIMAVERA
+//    }
 
     public static void main(String[] args) throws Exception {
         /*
@@ -82,11 +82,11 @@ public class HorarioPOO_enunciado {
         
         Asignatura a;
         a = new Asignatura(511,"algebra","P");
-        a.mostrar();
+        System.out.println(a.toString());     
         
         HorarioAsignaturas prueba1;
         prueba1 = new HorarioAsignaturas("ciencia",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal
-        prueba1.IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,"14-16");
+        prueba1.IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,14);
         
     }
 }
