@@ -22,14 +22,28 @@ public class HorarioAsignaturas {
         Horario_has = new HashMap<Asignatura, Horario>();//crea el objeto hash
     }
     
-    public void IncripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,String Hora){
+    public void IncripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,int Hora){
         Asignatura a = new Asignatura(ID,Nombre,Tipo);
         Horario h = new Horario(Dia,Hora);
         Horario_has.put(a, h); //añade  
+        // a partir de aqui son pruebas
         h.mostrar();
         a.mostrar();
         System.out.println("el hash:"+Horario_has.get(a));  //esto deberai de printear la direccion del objeto h ya que accede a traves de la clave a(funciona)  
         System.out.println("a:"+a);
         System.out.println("h:"+h);
+    }
+    
+    public void mostrarHorario(){ 
+        Horario_has.forEach((key,value)->{
+            if(key instanceof Asignatura)
+                System.out.println("es instaceof key");
+ //               key.mostrar(); // no entiendo porque si es clase asignatura no me deja usar su metodo
+            if(value instanceof Asignatura)
+                System.out.println("es instaceof value");
+            System.out.println("mostrarhorario");
+   //         h.mostrar();
+//            System.out.println(key+" = "+value);
+        });
     }
 }
