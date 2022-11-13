@@ -22,24 +22,9 @@ public class HorarioPOO_enunciado {
 
     public static final int DURACION_CLASES = 2;
     
-//    public static enum Semestre {
-//        OTOÑO,
-//        PRIMAVERA
-//    }
-
     public static void main(String[] args) throws Exception {
-        /*
-        // Creando un horario de asignaturas por defecto y mostrando el resultado
-        HorarioAsignaturas horarioAsignaturasPrueba = new HorarioAsignaturas();
-        horarioAsignaturasPrueba.mostrarInformacionBasica();
-
-        // Creando un horario de asignaturas de Ciencia de Datos
-        String grado = "Grado en Ingenieria de Ciencia de Datos";
-        HorarioAsignaturas horarioAsignaturas = new HorarioAsignaturas(grado, CursoEnum.CUARTO, Semestre.OTOÑO);
-        horarioAsignaturas.mostrarInformacionBasica();
-
-           
-        // Incluyendo los horarios teóricos "T" y prácticos "P" de las asignaturas
+        
+        /*                   
         
         // Horas validas, 8,10,12,15,17,19. Esta asignatura no se puede inscribir.
         horarioAsignaturas.inscripcionAsignatura(24035, "Asignatura con Horario NO valido", DiaSemanaEnum.JUEVES, 18);
@@ -67,15 +52,14 @@ public class HorarioPOO_enunciado {
     }
     
     private static void mostrarMenu(HorarioAsignaturas horarioAsig) {
-    */
-     
-        System.out.println("hola");
+    */                    
         
-//        Asignatura a;
-//        a = new Asignatura(511,"algebra","P");
-//        System.out.println(a.toString());     
+        //PRUEBA
+        HorarioAsignaturas horarioPrueba = new HorarioAsignaturas();
+        System.out.println(horarioPrueba.toString());
                 
-        HorarioAsignaturas horarioAsignaturas = new HorarioAsignaturas("ciencia",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal        
+        //CIENCIA DE DATOS
+        HorarioAsignaturas horarioAsignaturas = new HorarioAsignaturas("ciencia de datos",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal        
         horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", DiaSemanaEnum.LUNES, 10);
         horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.LUNES, 12);
         horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.MIERCOLES, 8);
@@ -85,6 +69,9 @@ public class HorarioPOO_enunciado {
         horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 15);
         horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", "P", DiaSemanaEnum.VIERNES, 8);
         horarioAsignaturas.inscripcionAsignatura(505204, "Programación Orientada a Objetos", DiaSemanaEnum.LUNES, 8);
-        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);
+        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);        
+        System.out.println(horarioAsignaturas.toString());
+        
+        
     }
 }

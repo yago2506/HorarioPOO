@@ -20,30 +20,41 @@ public class HorarioAsignaturas {
         Curso = curso; 
         Año = año;
         Epoca = epoca;
-        Horario_has = new HashMap<Asignatura, Horario>();//crea el objeto hash
+        Horario_has = new HashMap<Asignatura, Horario>();
+    }
+    
+    public HorarioAsignaturas()
+    {
+        Curso = null;
+        Año = null;
+        Epoca = null;
+        Horario_has = new HashMap<Asignatura, Horario>();
     }
     
     public void inscripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,int Hora){
         Asignatura a = new Asignatura(ID,Nombre,Tipo);
         Horario h = new Horario(Dia,Hora);
-        Horario_has.put(a, h); //añade  
-        // a partir de aqui son pruebas
-//        h.mostrar();
-//        a.mostrar();
-//        System.out.println("el hash:"+Horario_has.get(a));  //esto deberai de printear la direccion del objeto h ya que accede a traves de la clave a(funciona)  
-//        System.out.println("a:"+a);
-//        System.out.println("h:"+h);
+        Horario_has.put(a, h);        
+    }
+    
+    public void inscripcionAsignatura(int ID,String Nombre,DiaSemanaEnum Dia,int Hora){
+        Asignatura a = new Asignatura(ID,Nombre,"Teoria");
+        Horario h = new Horario(Dia,Hora);
+        Horario_has.put(a, h); 
     }
     
     public void mostrarHorario()
     { 
         Horario_has.forEach((key, value)->
-        {                                    
-            System.out.println("es instaceof key");
-//            key.mostrar(); // no entiendo porque si es clase asignatura no me deja usar su metodo            
+        {                                                
             System.out.println(key.toString());
-//            System.out.println("mostrarhorario");   
-//            System.out.println(key+" = "+value);
         });
     }
+
+    @Override
+    public String toString() {
+        return "HorarioAsignaturas{" + "Curso=" + Curso + ", Epoca=" + Epoca + ", A\u00f1o=" + Año + '}';
+    }
+    
+    
 }
