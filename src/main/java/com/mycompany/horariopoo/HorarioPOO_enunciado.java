@@ -84,10 +84,9 @@ public class HorarioPOO_enunciado {
         a = new Asignatura(511,"algebra","P");
         a.mostrar();
         
-        //esto no me va
         HorarioAsignaturas prueba1;
-        prueba1 = new HorarioAsignaturas("ciencia",CursoEnum.TERCERO,Semestre.OTOÑO);
-        IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,"14-16");
+        prueba1 = new HorarioAsignaturas("ciencia",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal
+        prueba1.IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,"14-16");
         
     }
 }

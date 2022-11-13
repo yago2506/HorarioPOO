@@ -9,16 +9,16 @@ package com.mycompany.horariopoo;
  * @author yago2
  */
 public class Horario {
-    private String Dia;
+    private DiaSemanaEnum Dia;
     private String Hora;
     
-    public Horario(String dia,String hora){
+    public Horario(DiaSemanaEnum dia,String hora){
         Dia = dia;
         Hora = hora;
     }
     
     public void mostrar(){
-        System.out.println(this.Dia);
-        System.out.println(this.Hora);
+        System.out.println("Dia:"+this.Dia);
+        System.out.println("Hora:"+this.Hora);
     }
 }

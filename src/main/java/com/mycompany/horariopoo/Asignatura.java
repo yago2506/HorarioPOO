@@ -21,9 +21,9 @@ public class Asignatura {
     }
     
     public void mostrar(){
-        System.out.println(this.ID);
-        System.out.println(this.Nombre);
-        System.out.println(this.Tipo);
+        System.out.println("ID:"+this.ID);
+        System.out.println("Nombre:"+this.Nombre);
+        System.out.println("Tipo:"+this.Tipo);
     }
     
 }
