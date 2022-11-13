@@ -10,9 +10,9 @@ package com.mycompany.horariopoo;
  */
 public class Horario {
     private DiaSemanaEnum Dia;
-    private String Hora;
+    private int Hora;
     
-    public Horario(DiaSemanaEnum dia,String hora){
+    public Horario(DiaSemanaEnum dia, int hora){
         Dia = dia;
         Hora = hora;
     }

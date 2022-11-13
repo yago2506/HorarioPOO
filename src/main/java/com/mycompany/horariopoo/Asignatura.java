@@ -20,10 +20,15 @@ public class Asignatura {
         Tipo = tipo;
     }
     
-    public void mostrar(){
-        System.out.println("ID:"+this.ID);
-        System.out.println("Nombre:"+this.Nombre);
-        System.out.println("Tipo:"+this.Tipo);
+//    public void mostrar(){
+//        System.out.println("ID:"+this.ID);
+//        System.out.println("Nombre:"+this.Nombre);
+//        System.out.println("Tipo:"+this.Tipo);
+//    }
+    
+    @Override
+    public String toString(){
+        return "ID: %s\nNombre: %s\nTipo: %s\n".formatted(ID,Nombre,Tipo);
     }
     
 }

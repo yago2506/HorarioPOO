@@ -12,13 +12,14 @@ import java.util.Map;
  */
 public class HorarioAsignaturas {
     private String Curso;
-//    private Semestre Epoca; // no se porque la clase semestre no la detecta, creo que es por estar dentro de la ejecucion principal pero no se como cambiar eso sin cambiar nada de ese codigo
+    private Semestre Epoca; 
     private CursoEnum Año;
     private HashMap Horario_has;
     
-    public HorarioAsignaturas(String curso, CursoEnum año){ //aqui falta por añadir el semestre pero no me deja meterlo bien
+    public HorarioAsignaturas(String curso, Semestre epoca, CursoEnum año){ //aqui falta por añadir el semestre pero no me deja meterlo bien
         Curso = curso; 
         Año = año;
+        Epoca = epoca;
         Horario_has = new HashMap<Asignatura, Horario>();//crea el objeto hash
     }
     
@@ -27,22 +28,21 @@ public class HorarioAsignaturas {
         Horario h = new Horario(Dia,Hora);
         Horario_has.put(a, h); //añade  
         // a partir de aqui son pruebas
-        h.mostrar();
-        a.mostrar();
-        System.out.println("el hash:"+Horario_has.get(a));  //esto deberai de printear la direccion del objeto h ya que accede a traves de la clave a(funciona)  
-        System.out.println("a:"+a);
-        System.out.println("h:"+h);
+//        h.mostrar();
+//        a.mostrar();
+//        System.out.println("el hash:"+Horario_has.get(a));  //esto deberai de printear la direccion del objeto h ya que accede a traves de la clave a(funciona)  
+//        System.out.println("a:"+a);
+//        System.out.println("h:"+h);
     }
     
-    public void mostrarHorario(){ 
-        Horario_has.forEach((key,value)->{
-            if(key instanceof Asignatura)
-                System.out.println("es instaceof key");
- //               key.mostrar(); // no entiendo porque si es clase asignatura no me deja usar su metodo
-            if(value instanceof Asignatura)
-                System.out.println("es instaceof value");
-            System.out.println("mostrarhorario");
-   //         h.mostrar();
+    public void mostrarHorario()
+    { 
+        Horario_has.forEach((Asignatura key, Horario value)->
+        {                                    
+            System.out.println("es instaceof key");
+//            key.mostrar(); // no entiendo porque si es clase asignatura no me deja usar su metodo            
+            System.out.println(key.toString());
+//            System.out.println("mostrarhorario");   
 //            System.out.println(key+" = "+value);
         });
     }
