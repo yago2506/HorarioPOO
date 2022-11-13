@@ -44,24 +44,19 @@ public class HorarioPOO_enunciado {
         horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 15);
         horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", "P", DiaSemanaEnum.VIERNES, 8);
         horarioAsignaturas.inscripcionAsignatura(505204, "Programación Orientada a Objetos", DiaSemanaEnum.LUNES, 8);
-        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);
+        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);                       
         
-        // Horas validas, 8,10,12,15,17,19. Esta asignatura no se puede inscribir.        
         
-        horarioAsignaturas.inscripcionAsignatura(24035, "Asignatura con Horario NO valido", DiaSemanaEnum.JUEVES, 18);        
         
-        try {
-            horarioAsignaturas.comprobarIncompatibilidades();
-            System.out.println();
-            System.out.println("-- Forzando un horario incompatible.");
-            horarioAsignaturas.inscripcionAsignatura(24035, "Asignatura con Horario NO compatible", DiaSemanaEnum.LUNES, 8);
+        try {                                                
+            horarioAsignaturas.inscripcionAsignatura(24035, "Asignatura con Horario NO valido", DiaSemanaEnum.JUEVES, 18);        
             horarioAsignaturas.comprobarIncompatibilidades();
         } catch (Exception ex) {
             System.err.println("-- El horario es incompatible."+ex);
         }
         
         // Mostrar el horario en dos variantes, al completo y práctico.
-        horarioAsignaturas.mostrarHorario();
+//        horarioAsignaturas.mostrarHorario();
         horarioAsignaturas.mostrarHorario("P");
 
 
