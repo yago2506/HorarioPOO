@@ -23,7 +23,7 @@ public class HorarioAsignaturas {
         Horario_has = new HashMap<Asignatura, Horario>();//crea el objeto hash
     }
     
-    public void IncripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,int Hora){
+    public void inscripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,int Hora){
         Asignatura a = new Asignatura(ID,Nombre,Tipo);
         Horario h = new Horario(Dia,Hora);
         Horario_has.put(a, h); //añade  
