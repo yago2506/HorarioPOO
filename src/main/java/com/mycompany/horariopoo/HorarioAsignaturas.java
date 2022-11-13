@@ -12,11 +12,12 @@ import java.util.Map;
  *
  * @author yago2
  */
-public class HorarioAsignaturas {
-    private String Curso;
-    private Semestre Epoca; 
-    private CursoEnum Año;
-    private HashMap Horario_has;
+public class HorarioAsignaturas 
+{
+    final private String Curso;
+    final private Semestre Epoca; 
+    final private CursoEnum Año;
+    final private HashMap Horario_has;
     
     public HorarioAsignaturas(String curso, CursoEnum año, Semestre epoca){ //aqui falta por añadir el semestre pero no me deja meterlo bien
         Curso = curso; 
@@ -86,9 +87,6 @@ public class HorarioAsignaturas {
     {
         return (Horario_has.size())*DURACION_CLASES;
     }
-    
-    
-    
 }
 
 
