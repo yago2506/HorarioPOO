@@ -40,16 +40,7 @@ public class HorarioPOO_enunciado {
 
            
         // Incluyendo los horarios teóricos "T" y prácticos "P" de las asignaturas
-        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", DiaSemanaEnum.LUNES, 10);
-        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.LUNES, 12);
-        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.MIERCOLES, 8);
-        horarioAsignaturas.inscripcionAsignatura(505202, "Fundamentos de Genética", DiaSemanaEnum.MARTES, 10);
-        horarioAsignaturas.inscripcionAsignatura(505202, "Fundamentos de Genética", DiaSemanaEnum.MARTES, 12);
-        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 12);
-        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 15);
-        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", "P", DiaSemanaEnum.VIERNES, 8);
-        horarioAsignaturas.inscripcionAsignatura(505204, "Programación Orientada a Objetos", DiaSemanaEnum.LUNES, 8);
-        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);
+        
         // Horas validas, 8,10,12,15,17,19. Esta asignatura no se puede inscribir.
         horarioAsignaturas.inscripcionAsignatura(24035, "Asignatura con Horario NO valido", DiaSemanaEnum.JUEVES, 18);
             
@@ -80,13 +71,20 @@ public class HorarioPOO_enunciado {
      
         System.out.println("hola");
         
-        Asignatura a;
-        a = new Asignatura(511,"algebra","P");
-        System.out.println(a.toString());     
-        
-        HorarioAsignaturas prueba1;
-        prueba1 = new HorarioAsignaturas("ciencia",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal
-        prueba1.IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,14);
-        
+//        Asignatura a;
+//        a = new Asignatura(511,"algebra","P");
+//        System.out.println(a.toString());     
+                
+        HorarioAsignaturas horarioAsignaturas = new HorarioAsignaturas("ciencia",Semestre.OTOÑO ,CursoEnum.TERCERO); //aqui falta el semestre para el metodo, va mal        
+        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", DiaSemanaEnum.LUNES, 10);
+        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.LUNES, 12);
+        horarioAsignaturas.inscripcionAsignatura(505201, "Estadística II", "P", DiaSemanaEnum.MIERCOLES, 8);
+        horarioAsignaturas.inscripcionAsignatura(505202, "Fundamentos de Genética", DiaSemanaEnum.MARTES, 10);
+        horarioAsignaturas.inscripcionAsignatura(505202, "Fundamentos de Genética", DiaSemanaEnum.MARTES, 12);
+        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 12);
+        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", DiaSemanaEnum.MIERCOLES, 15);
+        horarioAsignaturas.inscripcionAsignatura(505203, "Algoritmia", "P", DiaSemanaEnum.VIERNES, 8);
+        horarioAsignaturas.inscripcionAsignatura(505204, "Programación Orientada a Objetos", DiaSemanaEnum.LUNES, 8);
+        horarioAsignaturas.inscripcionAsignatura(505205, "Ecuaciones Diferenciales Ordinarias", DiaSemanaEnum.JUEVES, 19);
     }
 }
