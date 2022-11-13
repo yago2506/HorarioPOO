@@ -34,9 +34,10 @@ public class Horario {
             
         }
 
+    
     @Override
-    public String toString() {
-        return "Horario{" + "Dia=" + Dia + ", Hora=" + Hora + '}';
+    public String toString(){
+        return "Horario{DiaSemana=%s,Hora=%d}".formatted(Dia,Hora);
     }
 
     public int getHora() {

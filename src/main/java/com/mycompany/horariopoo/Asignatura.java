@@ -17,15 +17,26 @@ public class Asignatura {
     
     
     public Asignatura(int numero, String nombre, String tipo)
-    {              
+    {
         ID = numero;
         Nombre = nombre;
-        Tipo = tipo;                    
+        if(tipo=="P")
+            
+            Tipo = "Practico"; 
+        else
+            Tipo = "Teorico";
     }
-        
+
+    public String dar_tipo(){
+        return this.Tipo;
+    }
+
     @Override
     public String toString(){
-        return "ID: %s\nNombre: %s\nTipo: %s\n".formatted(ID,Nombre,Tipo);
+        return "Asignatura{Codigo=%s,Nombre=%s,Tipo=%s}".formatted(ID,Nombre,Tipo);
     }
-    
+
 }
+
+
+

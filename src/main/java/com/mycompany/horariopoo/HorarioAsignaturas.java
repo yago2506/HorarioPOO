@@ -18,7 +18,7 @@ public class HorarioAsignaturas {
     private CursoEnum Año;
     private HashMap Horario_has;
     
-    public HorarioAsignaturas(String curso, Semestre epoca, CursoEnum año){ //aqui falta por añadir el semestre pero no me deja meterlo bien
+    public HorarioAsignaturas(String curso, CursoEnum año, Semestre epoca){ //aqui falta por añadir el semestre pero no me deja meterlo bien
         Curso = curso; 
         Año = año;
         Epoca = epoca;
@@ -45,21 +45,40 @@ public class HorarioAsignaturas {
         Horario_has.put(a, h); 
     }
     
+    public void mostrarHorario(String tipo)
+    { 
+        if(tipo.equals("P"))
+        {
+            Horario_has.forEach((Asignatura key, Horario value)->
+            {                                                
+                if(key.dar_tipo().equals("Practico"))
+                {
+                    System.out.println(key.toString()+value.toString());
+                }
+            });
+        }
+        else
+        {
+            mostrarHorario();
+        }        
+    }
+    
     public void mostrarHorario()
     { 
         Horario_has.forEach((key, value)->
-        {                                                
-            System.out.println(key.toString());
+        {
+            System.out.println(key.toString()+value.toString());
         });
     }
+    
+    
     
     public void comprobarIncompatibilidades() throws Exception
     {
                 
     }
 
-    @Override
-    public String toString() {
+    public String mostrarInformacionBasica() {
         return "HorarioAsignaturas{" + "Curso=" + Curso + ", Epoca=" + Epoca + ", A\u00f1o=" + Año + '}';
     }
     
@@ -69,4 +88,7 @@ public class HorarioAsignaturas {
     }
     
     
+    
 }
+
+
