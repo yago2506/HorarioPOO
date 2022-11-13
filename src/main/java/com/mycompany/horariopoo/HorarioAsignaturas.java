@@ -12,19 +12,19 @@ import java.util.Map;
  */
 public class HorarioAsignaturas {
     private String Curso;
-    private Semestre Epoca; // no se porque la clase semestre no la detecta, creo que es por estar dentro de la ejecucion principal pero no se como cambiar eso sin cambiar nada de ese codigo
+//    private Semestre Epoca; // no se porque la clase semestre no la detecta, creo que es por estar dentro de la ejecucion principal pero no se como cambiar eso sin cambiar nada de ese codigo
     private CursoEnum Año;
+    private HashMap Horario_has;
     
-    public HorarioAsignaturas(String curso, Semestre epoca, CursoEnum año){ //aqui falta por añadir el semestre pero no me deja meterlo bien
-        Curso = curso;
-        Epoca = epoca;
+    public HorarioAsignaturas(String curso, CursoEnum año){ //aqui falta por añadir el semestre pero no me deja meterlo bien
+        Curso = curso; 
         Año = año;
+        Horario_has = new HashMap<Asignatura, Horario>();//crea el objeto hash
     }
     
     public void IncripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,String Hora){
         Asignatura a = new Asignatura(ID,Nombre,Tipo);
         Horario h = new Horario(Dia,Hora);
-        HashMap<Asignatura, Horario> Horario_has = new HashMap<>();//crea el objeto hash
         Horario_has.put(a, h); //añade  
         h.mostrar();
         a.mostrar();
