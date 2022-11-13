@@ -4,6 +4,9 @@
  */
 package com.mycompany.horariopoo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author yago2
@@ -12,13 +15,38 @@ public class Horario {
     private DiaSemanaEnum Dia;
     private int Hora;
     
-    public Horario(DiaSemanaEnum dia, int hora){
-        Dia = dia;
-        Hora = hora;
+    
+    public Horario(DiaSemanaEnum dia, int hora){    
+            ArrayList horas = new ArrayList<>(Arrays.asList(8,10,12,15,17,19));
+            try
+            {
+                Dia = dia;
+                Hora = hora;                    
+                if(!horas.contains(hora))
+                {
+                    throw new Exception("Asignatura con horario incompatible. Introduzca una hora adecuada");
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+            
+        }
+
+    @Override
+    public String toString() {
+        return "Horario{" + "Dia=" + Dia + ", Hora=" + Hora + '}';
+    }
+
+    public int getHora() {
+        return Hora;
     }
     
-    public void mostrar(){
-        System.out.println("Dia:"+this.Dia);
-        System.out.println("Hora:"+this.Hora);
-    }
+    
+        
+        
+    
+    
+    
 }

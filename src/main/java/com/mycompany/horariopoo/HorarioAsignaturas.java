@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.horariopoo;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,10 +52,20 @@ public class HorarioAsignaturas {
             System.out.println(key.toString());
         });
     }
+    
+    public void comprobarIncompatibilidades() throws Exception
+    {
+                
+    }
 
     @Override
     public String toString() {
         return "HorarioAsignaturas{" + "Curso=" + Curso + ", Epoca=" + Epoca + ", A\u00f1o=" + Año + '}';
+    }
+    
+    public int calculaHoras(int DURACION_CLASES)
+    {
+        return (Horario_has.size())*DURACION_CLASES;
     }
     
     

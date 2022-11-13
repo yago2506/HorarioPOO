@@ -4,8 +4,6 @@
  */
 package com.mycompany.horariopoo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -16,7 +14,7 @@ public class Asignatura {
     private int ID;
     private String Nombre;
     private String Tipo; //esto quiza se puede hacer con un int 1 y 0
-    private ArrayList horas = new ArrayList<>(Arrays.asList(8,10,12,15,17,19));
+    
     
     public Asignatura(int numero, String nombre, String tipo)
     {              
