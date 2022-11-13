@@ -8,15 +8,17 @@ package com.mycompany.horariopoo;
  *
  * @author yago2
  */
-public enum CursoEnum {
-    PRIMERO(1),
-    SEGUNDO(2),
-    TERCERO(2),
-    CUARTO(4);
+public class Horario {
+    private String Dia;
+    private String Hora;
     
-    final int curso;
-    
-    CursoEnum(int curso){
-        this.curso = curso;
+    public Horario(String dia,String hora){
+        Dia = dia;
+        Hora = hora;
     }
-} 
+    
+    public void mostrar(){
+        System.out.println(this.Dia);
+        System.out.println(this.Hora);
+    }
+}

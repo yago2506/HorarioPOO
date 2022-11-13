@@ -28,7 +28,7 @@ public class HorarioPOO_enunciado {
     }
 
     public static void main(String[] args) throws Exception {
-
+        /*
         // Creando un horario de asignaturas por defecto y mostrando el resultado
         HorarioAsignaturas horarioAsignaturasPrueba = new HorarioAsignaturas();
         horarioAsignaturasPrueba.mostrarInformacionBasica();
@@ -76,9 +76,18 @@ public class HorarioPOO_enunciado {
     }
     
     private static void mostrarMenu(HorarioAsignaturas horarioAsig) {
- 
- 
- 
- 
+    */
+     
+        System.out.println("hola");
+        
+        Asignatura a;
+        a = new Asignatura(511,"algebra","P");
+        a.mostrar();
+        
+        //esto no me va
+        HorarioAsignaturas prueba1;
+        prueba1 = new HorarioAsignaturas("ciencia",CursoEnum.TERCERO,Semestre.OTOÑO);
+        IncripcionAsignatura(511,"calculo","T",DiaSemanaEnum.VIERNES,"14-16");
+        
     }
 }

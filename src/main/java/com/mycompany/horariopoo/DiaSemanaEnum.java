@@ -8,15 +8,12 @@ package com.mycompany.horariopoo;
  *
  * @author yago2
  */
-public enum CursoEnum {
-    PRIMERO(1),
-    SEGUNDO(2),
-    TERCERO(2),
-    CUARTO(4);
-    
-    final int curso;
-    
-    CursoEnum(int curso){
-        this.curso = curso;
-    }
-} 
+enum DiaSemanaEnum {
+    LUNES,
+    MARTES,
+    MIERCOLES,
+    JUEVES,
+    VIERNES,
+    SABADO,
+    DOMINGO
+}
