@@ -6,9 +6,9 @@ package com.mycompany.horariopoo;
 
 /**
  *
- * @author Jokin
+ * @author yago2
  */
-public enum Semestre {
+public enum SemestreEnum {
     OTOÑO,
-    PRIMAVERA    
-}
+    PRIMAVERA
+    }

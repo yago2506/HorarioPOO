@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.horariopoo;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,15 +19,15 @@ import java.util.Map;
 public class HorarioAsignaturas 
 {
     final private String Curso;
-    final private Semestre Epoca; 
+    final private SemestreEnum Epoca; 
     final private CursoEnum Año;
-    final private HashMap Horario_has;
+//   final private HashMap Horario_has;  (esta creo que habia que borrarla pero no estoy 100% seguro, de momento la comento)
     
-    public HorarioAsignaturas(String curso, CursoEnum año, Semestre epoca){ //aqui falta por añadir el semestre pero no me deja meterlo bien
-        Curso = curso; 
-        Año = año;
-        Epoca = epoca;
-        Horario_has = new HashMap<Asignatura, Horario>();
+    public HorarioAsignaturas(String curso, CursoEnum año, SemestreEnum epoca){ //aqui falta por añadir el semestre pero no me deja meterlo bien
+       Curso = curso; 
+       Año = año;
+       Epoca = epoca;
+       HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
     }
     
     public HorarioAsignaturas()
@@ -34,19 +35,22 @@ public class HorarioAsignaturas
         Curso = null;
         Año = null;
         Epoca = null;
-        Horario_has = new HashMap<Asignatura, Horario>();
-    }
-    
-    public void inscripcionAsignatura(int ID,String Nombre,String Tipo,DiaSemanaEnum Dia,int Hora){
-        Asignatura a = new Asignatura(ID,Nombre,Tipo);
-        Horario h = new Horario(Dia,Hora);
-        Horario_has.put(a, h);        
+        HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
     }
     
     public void inscripcionAsignatura(int ID,String Nombre,DiaSemanaEnum Dia,int Hora){
-        Asignatura a = new Asignatura(ID,Nombre,"Teoria");
+        Asignatura a = new Asignatura(ID,Nombre);
         Horario h = new Horario(Dia,Hora);
         Horario_has.put(a, h); 
+    }
+    
+    public void inscripcionAsignaturaPractica(int ID,String Nombre, DiaSemanaEnum Dia, int Hora, int aula, String GrupoLab){
+        AsignaturaPractica a = new AsignaturaPractica(ID,Nombre,aula,GrupoLab);
+        Horario h = new Horario(Dia,Hora);   
+    }
+    
+    public void inscripcionExamen(int ID,LocalDate fecha,int porcentaje){
+        Examen exam = new Examen(ID,fecha,porcentaje);
     }
     
     public void mostrarHorario(String tipo)
