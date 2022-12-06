@@ -18,4 +18,8 @@ public class AsignaturaPractica extends Asignatura {
         this.aula = aula;
         this.GrupoLab = GrupoLab;
     }
+    
+    public String texto(){
+        return "Asignatura Practica {Codigo=%s ,Nombre=%s ,aula=%d ,GrupoLaboratoria=%s}".formatted(super.getID(),super.getNombre(),aula,GrupoLab);
+    }
 }

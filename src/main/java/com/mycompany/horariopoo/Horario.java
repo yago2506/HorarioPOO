@@ -24,7 +24,7 @@ public class Horario {
                 Hora = hora;                    
                 if(!horas.contains(hora))
                 {
-                    throw new Exception("Asignatura con horario incompatible. Introduzca una hora adecuada");
+                    throw new Exception("-- La asignatura no ha podido inscribirse. El horario " + hora +" no es valido.");
                 }
             }
             catch(Exception e)
@@ -34,9 +34,7 @@ public class Horario {
             
         }
 
-    
-    @Override
-    public String toString(){
+    public String texto(){
         return "Horario{DiaSemana=%s,Hora=%d}".formatted(Dia,Hora);
     }
 
@@ -44,10 +42,8 @@ public class Horario {
         return Hora;
     }
     
-    
-        
-        
-    
-    
+    public DiaSemanaEnum getDia(){
+        return Dia;
+    }
     
 }

@@ -20,7 +20,7 @@ import java.util.Scanner;
  *
  * @author inigo.sanchez
  */
-public class HorarioPOO_enunciado {
+public class HorarioPOO {
 
     public static final int DURACION_CLASES = 2;
     
@@ -30,6 +30,7 @@ public class HorarioPOO_enunciado {
     }
 
     public static void main(String[] args) {
+
         // Creando un horario de asignaturas por defecto y mostrando el resultado
         HorarioAsignaturas horarioAsignaturasPrueba = new HorarioAsignaturas();
         horarioAsignaturasPrueba.mostrarInformacionBasica();
@@ -84,7 +85,7 @@ public class HorarioPOO_enunciado {
     }
     
     private static void mostrarMenu(HorarioAsignaturas horarioAsig) {
-
-   }
+            System.out.println("Estas en el menu");
+	}
 
 }

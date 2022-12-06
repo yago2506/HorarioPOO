@@ -11,18 +11,26 @@ import java.time.LocalDate;
 public class Examen {
     private int codigo;
     private LocalDate Fecha;
-    private int porcentaje;
+    private int Porcentaje;
     
     public Examen(int ID,LocalDate fecha, int porcentaje){
         codigo = ID;
         Fecha = fecha;
-        porcentaje = porcentaje;
+        Porcentaje = porcentaje;
     }
     
     public Examen(int ID, int porcentaje){ //tiene que fijarlo en dos meses a partir del dia actual
         codigo = ID;
-        porcentaje = porcentaje;
+        Porcentaje = porcentaje;
         Fecha = LocalDate.now().plusMonths(2);
+    }
+    
+    public int getCodigo(){
+        return codigo;
+    }
+    
+    public String texto(){
+        return "Examen {Codigo asignatura=%d ,Fecha=%s ,porcentaje nota final=%d }".formatted(codigo,Fecha.toString(),Porcentaje);
     }
     
     

@@ -21,11 +21,18 @@ public class Asignatura {
         Nombre = nombre;
     }
     
-    @Override
-    public String toString(){
-        return "Asignatura{Codigo=%s,Nombre=%s}".formatted(ID,Nombre);
+    public int getID(){
+        return ID;
     }
-
+    
+    public String getNombre(){
+        return Nombre;
+    }
+    
+    public String texto(){
+        return "Asignatura Teorica {Codigo=%s ,Nombre=%s }".formatted(ID,Nombre);
+    }
+    
 }
 
 

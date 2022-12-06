@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.horariopoo;
+import com.mycompany.horariopoo.HorarioPOO.Semestre;
+import com.sun.jdi.Value;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,23 +21,27 @@ import java.util.Map;
 public class HorarioAsignaturas 
 {
     final private String Curso;
-    final private SemestreEnum Epoca; 
+    final private Semestre Epoca; 
     final private CursoEnum Año;
-//   final private HashMap Horario_has;  (esta creo que habia que borrarla pero no estoy 100% seguro, de momento la comento)
-    
-    public HorarioAsignaturas(String curso, CursoEnum año, SemestreEnum epoca){ //aqui falta por añadir el semestre pero no me deja meterlo bien
+   final private HashMap<Asignatura, Horario> Horario_has;  //(esta creo que habia que borrarla pero no estoy 100% seguro, de momento la comento)
+    final private ArrayList<Examen> examenes;
+   //HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
+   
+    public HorarioAsignaturas(String curso, CursoEnum año, Semestre epoca){ 
        Curso = curso; 
        Año = año;
        Epoca = epoca;
-       HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
+       Horario_has = new HashMap<Asignatura, Horario>();
+       examenes = new ArrayList<Examen>();
     }
     
-    public HorarioAsignaturas()
+    public HorarioAsignaturas() //el constructor vacio
     {
-        Curso = null;
-        Año = null;
-        Epoca = null;
-        HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
+        Curso = "Grado en Ingeniería Informática";
+        Año = CursoEnum.PRIMERO;
+        Epoca = Semestre.OTOÑO;
+        Horario_has = new HashMap<Asignatura, Horario>();
+        examenes = new ArrayList<Examen>();
     }
     
     public void inscripcionAsignatura(int ID,String Nombre,DiaSemanaEnum Dia,int Hora){
@@ -47,47 +53,91 @@ public class HorarioAsignaturas
     public void inscripcionAsignaturaPractica(int ID,String Nombre, DiaSemanaEnum Dia, int Hora, int aula, String GrupoLab){
         AsignaturaPractica a = new AsignaturaPractica(ID,Nombre,aula,GrupoLab);
         Horario h = new Horario(Dia,Hora);   
+        Horario_has.put(a, h);
     }
     
     public void inscripcionExamen(int ID,LocalDate fecha,int porcentaje){
-        Examen exam = new Examen(ID,fecha,porcentaje);
-    }
-    
-    public void mostrarHorario(String tipo)
-    { 
-        if(tipo.equals("P"))
-        {
-            Horario_has.forEach((Asignatura key, Horario value)->
-            {                                                
-                if(key.dar_tipo().equals("Practico"))
+        for (int i = 0; i < examenes.size(); i++) {
+                if(ID==examenes.get(i).getCodigo())
                 {
-                    System.out.println(key.toString()+value.toString());
+                    System.out.println("No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: "+ ID);
+                    return;
                 }
-            });
-        }
-        else
-        {
-            mostrarHorario();
-        }        
+            }
+        Examen exam = new Examen(ID,fecha,porcentaje);
+        examenes.add(exam);
+        System.out.println("-- El examen ha sido inscrito");
     }
     
-    public void mostrarHorario()
+    public void inscripcionExamen(int ID,int porcentaje){
+        for (int i = 0; i < examenes.size(); i++) {
+                if(ID==examenes.get(i).getCodigo())
+                {
+                    System.out.println("-- No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: "+ ID);
+                    return;
+                }
+            }
+        Examen exam = new Examen(ID,porcentaje);
+        examenes.add(exam);
+        System.out.println("-- El examen ha sido inscrito.");
+    }
+    
+    public void mostrarHorario() //muestra todas las clases + examenes
     { 
+        System.out.println("\nSe va a mostrar el horario teórico del curso,examenes incluidos");
         Horario_has.forEach((key, value)->
         {
-            System.out.println(key.toString()+value.toString());
+            System.out.println(key.texto()+value.texto());
         });
+        
+        System.out.println("\n-----------------------------------------------\n");
+        System.out.println("Los examenes son los siguientes:");
+        for (int i = 0; i < examenes.size(); i++) {
+            System.out.println(examenes.get(i).texto());
+        }
     }
     
-    
+    public void mostrarHorario(boolean valor) //muestra solo los practicos
+    { 
+        if (valor == true){
+            System.out.println("\nSe va a mostrar el horario practico del curso, examenes incluidos");
+            Horario_has.forEach((key, value)->
+            {
+                if(key instanceof AsignaturaPractica)
+                    System.out.println(key.texto()+value.texto());
+            });
+            System.out.println("\n-----------------------------------------------\n");
+            System.out.println("Los examenes son los siguientes:");
+            for (int i = 0; i < examenes.size(); i++) {
+                System.out.println(examenes.get(i).texto());
+            }
+        }
+    }
+
+    public void mostrarInformacionBasica() {
+        System.out.println("---------------------------------------------");
+        System.out.println("-- Estudios de grado " + Curso);
+        System.out.println("-- Es el " + Año + " curso.");
+        System.out.println("-- Semestre de " + Epoca);
+        System.out.println("---------------------------------------------");
+        System.out.println("-- El numero de asignaturas que conforman el horario son: " + Horario_has.size());
+        System.out.println("-- El numero de examanes fijados hasta el momento son: " + examenes.size());
+        System.out.println("---------------------------------------------\n");     
+    }
     
     public void comprobarIncompatibilidades() throws Exception
     {
-                
-    }
-
-    public String mostrarInformacionBasica() {
-        return "HorarioAsignaturas{" + "Curso=" + Curso + ", Epoca=" + Epoca + ", A\u00f1o=" + Año + '}';
+        ArrayList<String> auxiliarValue = new ArrayList<String>();
+        for (Map.Entry<Asignatura, Horario> entry : Horario_has.entrySet()) {
+            for (int i = 0; i < auxiliarValue.size(); i++) {
+                if(auxiliarValue.get(i).equals(entry.getValue().texto())){                   
+                    throw new Exception("-- El horario NO es compatible porque el " + entry.getValue().getDia() + " a las " + entry.getValue().getHora() + " hay dos clases.");
+                }
+            }
+            auxiliarValue.add(entry.getValue().texto());
+            if(auxiliarValue.size()==Horario_has.size())
+                System.out.println("-- El horario SI es compatible");
+        } 
     }
     
     public int calculaHoras(int DURACION_CLASES)
