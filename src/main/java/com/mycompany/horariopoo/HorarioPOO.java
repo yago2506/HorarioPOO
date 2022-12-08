@@ -85,7 +85,51 @@ public class HorarioPOO {
     }
     
     private static void mostrarMenu(HorarioAsignaturas horarioAsig) {
-            System.out.println("Estas en el menu");
+ //           System.out.println("Estas en el menu");
+            Scanner sc = new Scanner(System.in);
+            int eleccion = 0;
+            
+            while (eleccion!=8){
+                
+                try{
+                    System.out.println("-------------------------------------");
+                    System.out.println("1. Introduce una asignatura.\n2. Elimina una asignatura.\n3. Comprueba incompatibilidad del Horario.\n4. Gestion de examenes.\n5. Muestra el horario completo\n6. Calcula Horas. \n7. Vacia el horario.\n8. Salir del menu.");
+                    System.out.println("-------------------------------------\nEscribe una de las opciones");
+                    eleccion = Integer.parseInt(sc.nextLine());;
+                   
+                    switch (eleccion) {
+                        case 1:
+                          System.out.println("1");
+                          break;
+                        case 2:
+                          System.out.println("2");
+                          break;
+                        case 3:
+                          System.out.println("3");
+                          break;
+                        case 4:
+                          System.out.println("4");
+                          break;
+                        case 5:
+                          System.out.println("5");
+                          break;
+                        case 6:
+                          System.out.println("6");
+                          break;
+                        case 7:
+                          System.out.println("7");
+                          break;
+                        case 8:
+                            System.out.println("8");
+                            break;
+                        default:
+                            System.out.println("Solo numeros entre el 1 y 7");
+                      }
+                } 
+                catch(Exception e){
+                    System.out.println("Debes introducir un numero");
+                } 
+            }
 	}
 
 }
