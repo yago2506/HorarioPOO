@@ -3,147 +3,339 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.horariopoo;
+
 import com.mycompany.horariopoo.HorarioPOO.Semestre;
-import com.sun.jdi.Value;
+//import com.sun.jdi.Value;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+//import java.util.Arrays;
+//import java.util.HashMap;
+//import java.util.Map;
 
 /* edit yago 24/11 prueba git
-*/
-
+ */
 /**
  *
  * @author yago2
  */
-public class HorarioAsignaturas 
-{
-    final private String Curso;
-    final private Semestre Epoca; 
-    final private CursoEnum Año;
-   final private HashMap<Asignatura, Horario> Horario_has;  //(esta creo que habia que borrarla pero no estoy 100% seguro, de momento la comento)
-    final private ArrayList<Examen> examenes;
-   //HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
-   
-    public HorarioAsignaturas(String curso, CursoEnum año, Semestre epoca){ 
-       Curso = curso; 
-       Año = año;
-       Epoca = epoca;
-       Horario_has = new HashMap<Asignatura, Horario>();
-       examenes = new ArrayList<Examen>();
-    }
-    
-    public HorarioAsignaturas() //el constructor vacio
+public class HorarioAsignaturas {
+
+    private String grado;
+    private Semestre epoca;
+    private CursoEnum año;
+    static public HashMap<Asignatura, Horario> horario;
+    private ArrayList<Examen> examenes;
+//   HashMap<Asignatura, Horario> Horario_has = new HashMap<Asignatura, Horario>();
+
+    public HorarioAsignaturas(String grado, CursoEnum año, Semestre epoca) //constuctor con parametros dados
     {
-        Curso = "Grado en Ingeniería Informática";
-        Año = CursoEnum.PRIMERO;
-        Epoca = Semestre.OTOÑO;
-        Horario_has = new HashMap<Asignatura, Horario>();
-        examenes = new ArrayList<Examen>();
+        this.grado = grado;
+        this.año = año;
+        this.epoca = epoca;
+        this.horario = new HashMap<Asignatura, Horario>();
+        this.examenes = new ArrayList<Examen>();
     }
-    
-    public void inscripcionAsignatura(int ID,String Nombre,DiaSemanaEnum Dia,int Hora){
-        Asignatura a = new Asignatura(ID,Nombre);
-        Horario h = new Horario(Dia,Hora);
-        Horario_has.put(a, h); 
+
+    public HorarioAsignaturas() //el constructor por defecto (sin parametros)
+    {
+        grado = "Grado en Ingeniería Informática";
+        año = CursoEnum.PRIMERO;
+        epoca = Semestre.OTOÑO;
+        horario = new HashMap<Asignatura, Horario>();
+        examenes = new ArrayList<>();
     }
-    
-    public void inscripcionAsignaturaPractica(int ID,String Nombre, DiaSemanaEnum Dia, int Hora, int aula, String GrupoLab){
-        AsignaturaPractica a = new AsignaturaPractica(ID,Nombre,aula,GrupoLab);
-        Horario h = new Horario(Dia,Hora);   
-        Horario_has.put(a, h);
+
+    public void inscripcionAsignatura(int id, String nombre, DiaSemana dia, int hora) //inscripcion de asignaturas con parametros dados
+    {
+        Asignatura a = new Asignatura(id, nombre);
+        Horario h = new Horario(dia, hora);
+        horario.put(a, h);
     }
-    
-    public void inscripcionExamen(int ID,LocalDate fecha,int porcentaje){
-        for (int i = 0; i < examenes.size(); i++) {
-                if(ID==examenes.get(i).getCodigo())
-                {
-                    System.out.println("No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: "+ ID);
-                    return;
-                }
+
+    public static void inscripcionAsignatura() //inscripcion de asignatura (sin parametros; hay que preguntarle al usuario por ellos)
+    {
+        Scanner sc = new Scanner(System.in);
+        int id;
+        String nombre;
+        String dia;
+        DiaSemana diaSemana = DiaSemana.LUNES; //valor por defecto es lunes. luego se cambiará
+        int hora;
+
+        
+        System.out.println("Introduce ID: ");
+        id = Integer.parseInt(sc.next());
+
+        System.out.println("Introduce nombre:");
+        nombre = sc.next();
+        
+        System.out.println("Introduce dia: ");        
+        System.out.println("""
+                           1 - LUNES
+                           2 - MARTES
+                           3 - MIERCOLES
+                           4 - JUEVES
+                           5 - VIERNES
+                           6 - SABADO
+                           7 - DOMINGO
+                           ---->
+                           """);
+        dia = sc.next();
+        switch (dia) {
+            case "1" ->
+                diaSemana = DiaSemana.LUNES;
+            case "2" ->
+                diaSemana = DiaSemana.MARTES;
+            case "3" ->
+                diaSemana = DiaSemana.MIERCOLES;
+            case "4" ->
+                diaSemana = DiaSemana.JUEVES;
+            case "5" ->
+                diaSemana = DiaSemana.VIERNES;
+            case "6" ->
+                diaSemana = DiaSemana.SABADO;
+            case "7" ->
+                diaSemana = DiaSemana.DOMINGO;
+            default -> {
             }
-        Examen exam = new Examen(ID,fecha,porcentaje);
+        }
+
+        System.out.println("Introduce hora: ");
+        hora = Integer.parseInt(sc.next());
+
+        Asignatura a = new Asignatura(id, nombre);
+        Horario h = new Horario(diaSemana, hora);
+
+        horario.put(a, h);
+    }
+
+    public void inscripcionAsignaturaPractica(int ID, String Nombre, DiaSemana Dia, int Hora, int aula, String GrupoLab) //inscripcion de asignatura practica con parametros dados
+    {
+        AsignaturaPractica a = new AsignaturaPractica(ID, Nombre, aula, GrupoLab);
+        Horario h = new Horario(Dia, Hora);
+        horario.put(a, h);
+    }
+
+    public void inscripcionExamen(int ID, LocalDate fecha, int porcentaje) {
+        for (int i = 0; i < examenes.size(); i++) {
+            if (ID == examenes.get(i).getCodigo()) {
+                System.out.println("No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: " + ID);
+                return;
+            }
+        }
+        Examen exam = new Examen(ID, fecha, porcentaje);
         examenes.add(exam);
         System.out.println("-- El examen ha sido inscrito");
     }
-    
-    public void inscripcionExamen(int ID,int porcentaje){
+
+    public void inscripcionExamen(int ID, int porcentaje) {
         for (int i = 0; i < examenes.size(); i++) {
-                if(ID==examenes.get(i).getCodigo())
-                {
-                    System.out.println("-- No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: "+ ID);
-                    return;
-                }
+            if (ID == examenes.get(i).getCodigo()) {
+                System.out.println("-- No se puede inscribir este examen ya que ya hay un examen para esta asignatura de codigo: " + ID);
+                return;
             }
-        Examen exam = new Examen(ID,porcentaje);
+        }
+        Examen exam = new Examen(ID, porcentaje);
         examenes.add(exam);
         System.out.println("-- El examen ha sido inscrito.");
     }
-    
-    public void mostrarHorario() //muestra todas las clases + examenes
-    { 
-        System.out.println("\nSe va a mostrar el horario teórico del curso,examenes incluidos");
-        Horario_has.forEach((key, value)->
+
+    public void mostrarHorario() //muestra todas las clases + examenes            
+    {
+        if(horario.isEmpty())
         {
-            System.out.println(key.texto()+value.texto());
-        });
-        
-        System.out.println("\n-----------------------------------------------\n");
-        System.out.println("Los examenes son los siguientes:");
-        for (int i = 0; i < examenes.size(); i++) {
-            System.out.println(examenes.get(i).texto());
+            System.out.println("El horario esta vacio");
         }
-    }
-    
-    public void mostrarHorario(boolean valor) //muestra solo los practicos
-    { 
-        if (valor == true){
-            System.out.println("\nSe va a mostrar el horario practico del curso, examenes incluidos");
-            Horario_has.forEach((key, value)->
+        else
+        {
+            System.out.println("\nSe va a mostrar el horario teórico del curso,examenes incluidos");
+            horario.forEach((key, value)->
             {
-                if(key instanceof AsignaturaPractica)
-                    System.out.println(key.texto()+value.texto());
+                System.out.println(key.toString()+value.toString());
             });
+
             System.out.println("\n-----------------------------------------------\n");
             System.out.println("Los examenes son los siguientes:");
-            for (int i = 0; i < examenes.size(); i++) {
-                System.out.println(examenes.get(i).texto());
+            mostrarExamenes();
+        }
+    }
+
+    public void mostrarHorario(boolean valor) //muestra solo los practicos + examenes
+    {
+        if(horario.isEmpty())
+        {
+            System.out.println("El horario esta vacio");
+        }
+        else
+        {
+            if (valor == true) {
+                for (Asignatura a : horario.keySet()) {
+                    if (a instanceof AsignaturaPractica) {
+                        System.out.println(a.toString() + horario.get(a).getDia() + horario.get(a).getHora());
+                    }
+                }
             }
         }
+
+        mostrarExamenes();
+
     }
 
     public void mostrarInformacionBasica() {
         System.out.println("---------------------------------------------");
-        System.out.println("-- Estudios de grado " + Curso);
-        System.out.println("-- Es el " + Año + " curso.");
-        System.out.println("-- Semestre de " + Epoca);
+        System.out.println("-- Estudios de grado " + grado);
+        System.out.println("-- Es el " + año + " curso.");
+        System.out.println("-- Semestre de " + epoca);
         System.out.println("---------------------------------------------");
-        System.out.println("-- El numero de asignaturas que conforman el horario son: " + Horario_has.size());
+        System.out.println("-- El numero de asignaturas que conforman el horario son: " + horario.size());
         System.out.println("-- El numero de examanes fijados hasta el momento son: " + examenes.size());
-        System.out.println("---------------------------------------------\n");     
+        System.out.println("---------------------------------------------\n");
     }
-    
-    public void comprobarIncompatibilidades() throws Exception
-    {
-        ArrayList<String> auxiliarValue = new ArrayList<String>();
-        for (Map.Entry<Asignatura, Horario> entry : Horario_has.entrySet()) {
-            for (int i = 0; i < auxiliarValue.size(); i++) {
-                if(auxiliarValue.get(i).equals(entry.getValue().texto())){                   
-                    throw new Exception("-- El horario NO es compatible porque el " + entry.getValue().getDia() + " a las " + entry.getValue().getHora() + " hay dos clases.");
+
+    public void comprobarIncompatibilidades() throws Exception {
+        if(horario.isEmpty())
+        {
+            System.out.println("No hay asignaturas!!!");
+        }
+        else
+        {
+            ArrayList<String> auxiliarValue = new ArrayList<String>();
+            for (Map.Entry<Asignatura, Horario> entry : horario.entrySet()) {
+                for (int i = 0; i < auxiliarValue.size(); i++) {
+                    if (auxiliarValue.get(i).equals(entry.getValue().toString())) {
+                        throw new Exception("-- El horario NO es compatible porque el " + entry.getValue().getDia() + " a las " + entry.getValue().getHora() + " hay dos clases.");
+                    }
+                }
+                auxiliarValue.add(entry.getValue().toString());
+                if (auxiliarValue.size() == horario.size()) {
+                    System.out.println("-- El horario SI es compatible");
                 }
             }
-            auxiliarValue.add(entry.getValue().texto());
-            if(auxiliarValue.size()==Horario_has.size())
-                System.out.println("-- El horario SI es compatible");
-        } 
+        }
+    }
+
+    public void eliminarAsignatura(int codigoAsignatura) {
+        if (horario.isEmpty()) {
+            System.out.println("No has introducido ninguna asignatura aun");
+        } else {
+            boolean encontrada = false;
+            for (Asignatura a : horario.keySet()) {
+                if (codigoAsignatura == a.getId()) {
+                    encontrada = true;
+                    horario.remove(a);
+                    System.out.printf("\nLa asignatura %s ha sido eliminada\n", a.getNombre());
+                    break;
+                }
+            }
+            if (!encontrada) {
+                System.out.println("La asignatura introducia no está en la lista");
+            }
+
+        }
+
+    }
+
+    public int calculaHoras(int DURACION_CLASES) {
+        return (horario.size()) * DURACION_CLASES;
+
+    }
+
+    public void vaciar() {
+        grado = "Grado en Ingeniería Informática";
+        año = CursoEnum.PRIMERO;
+        epoca = Semestre.OTOÑO;
+        horario = new HashMap<Asignatura, Horario>();
+        examenes = new ArrayList<>();
     }
     
-    public int calculaHoras(int DURACION_CLASES)
+    public void mostrarExamenes()
     {
-        return (Horario_has.size())*DURACION_CLASES;
+        if(examenes.isEmpty())
+        {
+            System.out.println("No hay examenes");
+        }
+        else
+        {
+            System.out.printf("\n---------------------------------------\n");
+            for(Examen examen : examenes)
+            {
+                System.out.println(examen.toString());
+            }
+            System.out.printf("---------------------------------------\n");
+        }
+    }
+    public void añadirExamen() throws Exception
+    {
+        //preguntar al usuario por la info y añadirlo a examenes
+        Scanner sc = new Scanner(System.in);
+        System.out.println("---------------< AÑADIR EXAMENES >---------------");
+        System.out.println("Sabes la fecha del examen?\nY/n");
+        String decision = sc.next();
+        
+        System.out.println("Introduce el codigo de la asignatura del examen");
+        int codigoExamen = Integer.parseInt(sc.next());
+        for(Examen examen : examenes)
+        {
+            if(examen.getCodigo() == codigoExamen)
+            {
+                System.out.println("Ya hay un examen con el codigo que has introducido!!");
+                return;                
+            }
+        }
+        System.out.println("Sobre 100, cuanto vale el examen respecto a la nota final?");
+        int ponderacion = Integer.parseInt(sc.next());        
+                
+        if(decision.equals("Y")) //introducimos examen con fecha
+        {
+            System.out.println("Cuando es? Formato: YYYY-MM-DD");
+            String fecha = sc.next();
+            Examen examenAñadir = new Examen(codigoExamen, LocalDate.parse(fecha), ponderacion);
+            examenes.add(examenAñadir);
+        }
+        else if(decision.equals("n")) //inroducimos examen sin fecha
+        {
+            Examen examenAñadir = new Examen(codigoExamen, ponderacion);
+            examenes.add(examenAñadir);
+        }
+        else
+        {
+            System.out.println("Vuelva a introducir la respuesta! Y/n");
+        }            
+    }
+    
+    public void eliminarExamen(int codigo)
+    {
+        if(examenes.isEmpty())
+        {
+            System.out.println("No hay examenes!!");
+        }
+        else
+        {    
+            boolean encontrado = false;
+            for(Examen examen : examenes)
+            {
+                if(examen.getCodigo() == codigo)
+                {
+                    encontrado = true;
+                    examenes.remove(examen);
+                    System.out.printf("El examen %s ha sido eliminado", examen.toString());
+                    break;
+                }
+            }
+            if(!encontrado)
+            {
+                System.out.println("El codigo introducido no corresponde a ningun examen");
+            }
+        }
+    }
+    public void eliminarExamen()
+    {
+        Scanner sc = new Scanner(System.in);
+        mostrarExamenes();
+        System.out.println("Que examen quieres eliminar? (Introduce el codigo de la asignatura");
+        int eliminarCodigo = Integer.parseInt(sc.next());
+        eliminarExamen(eliminarCodigo);
     }
 }
-
-

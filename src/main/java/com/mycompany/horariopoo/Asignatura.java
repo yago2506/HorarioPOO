@@ -4,36 +4,31 @@
  */
 package com.mycompany.horariopoo;
 
-
 /**
  *
  * @author yago2
  */
 public class Asignatura {
-    
-    private int ID;
-    private String Nombre;
-    
-    
-    public Asignatura(int numero, String nombre)
-    {
-        ID = numero;
-        Nombre = nombre;
+
+    private final int id;
+    private final String nombre;
+
+    public Asignatura(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
-    
-    public int getID(){
-        return ID;
+
+    public int getId() {
+        return id;
     }
-    
-    public String getNombre(){
-        return Nombre;
+
+    public String getNombre() {
+        return nombre;
     }
-    
-    public String texto(){
-        return "Asignatura Teorica {Codigo=%s ,Nombre=%s }".formatted(ID,Nombre);
+
+    @Override
+    public String toString() {
+        return "Asignatura Teorica {Codigo=%s ,nombre=%s }".formatted(id, nombre);
     }
-    
+
 }
-
-
-

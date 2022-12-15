@@ -8,9 +8,12 @@ package com.mycompany.horariopoo;
  *
  * @author yago2
  */
-public enum CursoEnum {
-    PRIMERO,
-    SEGUNDO,
-    TERCERO,
-    CUARTO
+enum DiaSemana {
+    LUNES,
+    MARTES,
+    MIERCOLES,
+    JUEVES,
+    VIERNES,
+    SABADO,
+    DOMINGO
 }

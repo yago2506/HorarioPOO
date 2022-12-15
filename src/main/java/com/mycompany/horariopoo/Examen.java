@@ -3,35 +3,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.horariopoo;
+
 import java.time.LocalDate;
+
 /**
  *
  * @author yago2
  */
 public class Examen {
+
     private int codigo;
-    private LocalDate Fecha;
-    private int Porcentaje;
-    
-    public Examen(int ID,LocalDate fecha, int porcentaje){
-        codigo = ID;
-        Fecha = fecha;
-        Porcentaje = porcentaje;
+    private LocalDate fecha;
+    private int ponderacion;
+
+    public Examen(int codigo, LocalDate fecha, int ponderacion) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.ponderacion = ponderacion;
     }
-    
-    public Examen(int ID, int porcentaje){ //tiene que fijarlo en dos meses a partir del dia actual
-        codigo = ID;
-        Porcentaje = porcentaje;
-        Fecha = LocalDate.now().plusMonths(2);
+
+    public Examen(int codigo, int ponderacion) { //tiene que fijarlo en dos meses a partir del dia actual
+        this.codigo = codigo;
+        this.ponderacion = ponderacion;
+        this.fecha = LocalDate.now().plusMonths(2);
     }
-    
-    public int getCodigo(){
+
+    public int getCodigo() {
         return codigo;
     }
-    
-    public String texto(){
-        return "Examen {Codigo asignatura=%d ,Fecha=%s ,porcentaje nota final=%d }".formatted(codigo,Fecha.toString(),Porcentaje);
+
+    public String toString() {
+        return "Examen {Codigo asignatura=%d ,Fecha=%s ,ponderacion nota final=%d }".formatted(codigo, fecha.toString(), ponderacion);
     }
-    
-    
+
 }
