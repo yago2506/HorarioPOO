@@ -80,98 +80,101 @@ public class HorarioPOO {
     }
 
     private static void mostrarMenu(HorarioAsignaturas horarioAsignaturas) {
-        Scanner sc = new Scanner(System.in);
-        String eleccion = "";
-        while (!eleccion.equals("8")) {
+        try{
+            Scanner sc = new Scanner(System.in);
+            String eleccion = "";
+            while (!eleccion.equals("8")) {
 
-            System.out.println("\n-------------------------------------");
-            System.out.println("1. Introduce una asignatura.\n2. Elimina una asignatura.\n3. Comprueba incompatibilidad del Horario.\n4. Gestion de examenes.\n5. Muestra el horario completo\n6. Calcula Horas. \n7. Vacia el horario.\n8. Salir del menu.");
-            System.out.println("-------------------------------------\nEscribe una de las opciones");
-            eleccion = sc.nextLine();
-            switch (eleccion){
-                case "1" -> {
-                    System.out.println("Has seleccionado la opcion 1. Inscribir asignatura");
+                System.out.println("\n-------------------------------------");
+                System.out.println("1. Introduce una asignatura.\n2. Elimina una asignatura.\n3. Comprueba incompatibilidad del Horario.\n4. Gestion de examenes.\n5. Muestra el horario completo\n6. Calcula Horas. \n7. Vacia el horario.\n8. Salir del menu.");
+                System.out.println("-------------------------------------\nEscribe una de las opciones");
+                eleccion = sc.nextLine();
+                switch (eleccion){
+                    case "1" -> {
+                        System.out.println("Has seleccionado la opcion 1. Inscribir asignatura");
 
-                    inscripcionAsignatura();
-                    break;
-                }
-                case "2" -> {
-                    System.out.println("Has seleccionado la opción 2. Eliminar asignatura por codigo.");
-                    System.out.println("NOTA: si la asignatura tiene examen definido, este será eliminado también.");
-
-                    horarioAsignaturas.mostrarHorario();
-                    System.out.println("Indique el codigo numérico de la asignatura que desea eliminar del horario.");
-                    int codigoAsignatura = Integer.parseInt(sc.next());
-                    horarioAsignaturas.eliminarAsignatura(codigoAsignatura);
-                    break;
-                }
-                case "3" -> {
-                    System.out.println("Has seleccionado la opcion 3. Comprueba incompatibilidad del Horario.\n");
-                    try {
-                        horarioAsignaturas.comprobarIncompatibilidades();
-                    } catch (Exception e) {
-                        System.err.println(" -- El horario es incompatible." + e); // cuenta el numero de clases que hay ese dia
+                        inscripcionAsignatura();
+                        break;
                     }
-
-                    //comprobar incompatibilidades
-                }
-                case "4" -> {
-
-                    //gestion examenes
-                    String decisionExamen = "";
-                    while (true) {
-                        System.out.println("\nQue quieres hacer con los examenes? ");
-                        System.out.println("""
-                                           1 - Añadir examen (solo uno por asignatura)
-                                           2 - Eliminar examen (introducir codigo de asignatura)
-                                           3 - Consultar examenes 
-                                           4 - Salir""");
-                        decisionExamen = sc.next();
-                        switch (decisionExamen) {
-                            case "1" -> {
-                                try {
-                                    horarioAsignaturas.añadirExamen();
-                                } catch (Exception e) //se crea una excepcion si ya hay un examen con ese codigo
-                                {
-                                    System.out.println(e.getMessage());
-                                }
-
-                            }
-                            case "2" ->
-                                horarioAsignaturas.eliminarExamen();
-                            case "3" ->
-                                horarioAsignaturas.mostrarExamenes();
-                            case "4" -> {
-                                break;
-                            }
-                            default ->
-                                System.out.println("Introduce numeros del 1 al 4!!");
+                    case "2" -> {
+                        System.out.println("Has seleccionado la opción 2. Eliminar asignatura por codigo.");
+                        System.out.println("NOTA: si la asignatura tiene examen definido, este será eliminado también.");
+                         
+                        horarioAsignaturas.mostrarHorario();
+                        System.out.println("Indique el codigo numérico de la asignatura que desea eliminar del horario.");
+                        int codigoAsignatura = Integer.parseInt(sc.next());
+                        horarioAsignaturas.eliminarAsignatura(codigoAsignatura);
+                        break;                   
+                    }
+                    case "3" -> {
+                        System.out.println("Has seleccionado la opcion 3. Comprueba incompatibilidad del Horario.\n");
+                        try {
+                            horarioAsignaturas.comprobarIncompatibilidades();
+                        } catch (Exception e) {
+                            System.err.println(" -- El horario es incompatible." + e); // cuenta el numero de clases que hay ese dia
                         }
                     }
+                    case "4" -> {
 
-                }
-                case "5" -> {
-                    System.out.println("Has seleccionado la opcion 5. Muestra el horario completo.\n");
-                    horarioAsignaturas.mostrarHorario();
-                }
-                case "6" -> {
-                    System.out.println("Has seleccionado la opcion 6. Calcula Horas.");
-                    System.out.printf("\nLas horas lectivas de su curso son: %d", horarioAsignaturas.calculaHoras(DURACION_CLASES));
+                        //gestion examenes
+                        String decisionExamen = "";
+                        while (true) {
+                            System.out.println("\nQue quieres hacer con los examenes? ");
+                            System.out.println("""
+                                               1 - Añadir examen (solo uno por asignatura)
+                                               2 - Eliminar examen (introducir codigo de asignatura)
+                                               3 - Consultar examenes 
+                                               4 - Salir""");
+                            decisionExamen = sc.next();
+                            switch (decisionExamen) {
+                                case "1" -> {
+                                    try {
+                                        horarioAsignaturas.añadirExamen();
+                                    } catch (Exception e) //se crea una excepcion si ya hay un examen con ese codigo
+                                    {
+                                        System.out.println(e.getMessage());
+                                    }
 
+                                }
+                                case "2" ->
+                                    horarioAsignaturas.eliminarExamen();
+                                case "3" ->
+                                    horarioAsignaturas.mostrarExamenes();
+                                case "4" -> {
+                                    break;
+                                }
+                                default ->
+                                    System.out.println("Introduce numeros del 1 al 4!!");
+                            }
+                        }
+
+                    }
+                    case "5" -> {
+                        System.out.println("Has seleccionado la opcion 5. Muestra el horario completo.\n");
+                        horarioAsignaturas.mostrarHorario();
+                    }
+                    case "6" -> {
+                        System.out.println("Has seleccionado la opcion 6. Calcula Horas.");
+                        System.out.printf("\nLas horas lectivas de su curso son: %d", horarioAsignaturas.calculaHoras(DURACION_CLASES));
+
+                    }
+                    case "7" -> {
+                        System.out.println("Has seleccionado la opcion 7. Vaciar el horario.\n");
+                        horarioAsignaturas.vaciar();
+                        System.out.println("El horario ha sido vaciado.");
+                    }
+                    case "8" -> {
+                        break;
+                    }
+//                    default ->
+//                        System.out.println("Solo numeros entre 1 y 8 ambos inclusive");
                 }
-                case "7" -> {
-                    System.out.println("Has seleccionado la opcion 7. Vaciar el horario.\n");
-                    horarioAsignaturas.vaciar();
-                    System.out.println("El horario ha sido vaciado.");
-                }
-                case "8" -> {
-                    //salir del menu
-                    break;
-                }
-                default ->
-                    System.out.println("Solo numeros entre 1 y 7 ambos inclusive");
             }
         }
+        catch(NumberFormatException ex){  
+            System.out.println("error letra");
+            System.err.println("Invalid string in argumment");
+            mostrarMenu(horarioAsignaturas);
+        }
     }
-
 }
