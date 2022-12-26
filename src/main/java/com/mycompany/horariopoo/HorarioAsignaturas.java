@@ -50,6 +50,7 @@ public class HorarioAsignaturas {
 
     public void inscripcionAsignatura(int id, String nombre, DiaSemana dia, int hora) //inscripcion de asignaturas con parametros dados
     {
+        
         Asignatura a = new Asignatura(id, nombre);
         Horario h = new Horario(dia, hora);
         horario.put(a, h);
@@ -146,7 +147,7 @@ public class HorarioAsignaturas {
     {
         if(horario.isEmpty())
         {
-            System.out.println("El horario esta vacio");
+            System.out.println("-- El horario esta vacio, no hay ninguna asignatura inscrita");
         }
         else
         {
@@ -170,7 +171,7 @@ public class HorarioAsignaturas {
         }
         else
         {
-            if (valor == true) {
+            if (valor == true) { // si es true muestra tambien los 
                 for (Asignatura a : horario.keySet()) {
                     if (a instanceof AsignaturaPractica) {
                         System.out.println(a.toString() + horario.get(a).getDia() + horario.get(a).getHora());
@@ -217,20 +218,40 @@ public class HorarioAsignaturas {
     }
 
     public void eliminarAsignatura(int codigoAsignatura) {
+        ArrayList<Asignatura> auxiliar = new ArrayList<Asignatura>();
         if (horario.isEmpty()) {
-            System.out.println("No has introducido ninguna asignatura aun");
+            System.out.println("No has introducido ninguna asignatura aun, el horario esta vacio");
         } else {
             boolean encontrada = false;
             for (Asignatura a : horario.keySet()) {
                 if (codigoAsignatura == a.getId()) {
-                    encontrada = true;
-                    horario.remove(a);
-                    System.out.printf("\nLa asignatura %s ha sido eliminada\n", a.getNombre());
-                    break;
+                    encontrada = true;                    
+                    auxiliar.add(a);  
                 }
             }
             if (!encontrada) {
-                System.out.println("La asignatura introducia no está en la lista");
+                System.out.println("La asignatura introducia no se encuentra en el horario");
+            }
+            else{
+                for (int i = 0; i < auxiliar.size(); i++) {
+                    horario.remove(auxiliar.get(i));
+                    System.out.printf("Se elimina la asignatura -- %s \n", auxiliar.get(i).toString());
+                }
+            //eliminar examen
+            encontrada = false;
+            for(Examen examen : examenes)
+            {
+                if(examen.getCodigo() == codigoAsignatura)
+                {
+                    encontrada = true;
+                    examenes.remove(examen);
+                    System.out.printf("Se elimina el examen --%s \n", examen.toString());
+                    break;
+                }
+            }
+            if(!encontrada){
+                    System.out.println("No se ha podido eliminar el examen con código de asignatura %d dado que no existe el examen".formatted(codigoAsignatura));
+                    }
             }
 
         }
@@ -238,7 +259,13 @@ public class HorarioAsignaturas {
     }
 
     public int calculaHoras(int DURACION_CLASES) {
-        return (horario.size()) * DURACION_CLASES;
+        int clasesPracticas=0;
+        for (Asignatura a : horario.keySet()) {
+            if (a instanceof AsignaturaPractica) {
+                clasesPracticas = clasesPracticas + 1;
+                }
+            }
+        return (horario.size()) * DURACION_CLASES + clasesPracticas;
 
     }
 
@@ -271,7 +298,7 @@ public class HorarioAsignaturas {
         //preguntar al usuario por la info y añadirlo a examenes
         Scanner sc = new Scanner(System.in);
         System.out.println("---------------< AÑADIR EXAMENES >---------------");
-        System.out.println("Sabes la fecha del examen?\nY/n");
+        System.out.println("Sabes la fecha del examen?\nY(yes)/n(no)");
         String decision = sc.next();
         
         System.out.println("Introduce el codigo de la asignatura del examen");

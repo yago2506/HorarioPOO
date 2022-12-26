@@ -88,26 +88,29 @@ public class HorarioPOO {
             System.out.println("1. Introduce una asignatura.\n2. Elimina una asignatura.\n3. Comprueba incompatibilidad del Horario.\n4. Gestion de examenes.\n5. Muestra el horario completo\n6. Calcula Horas. \n7. Vacia el horario.\n8. Salir del menu.");
             System.out.println("-------------------------------------\nEscribe una de las opciones");
             eleccion = sc.nextLine();
-            switch (eleccion) /*, calculahoras tiene que hacer teoria = 2h y practica 3h creo, que no tenga que volver a introducirlo todo, si esta vacio, funcion clear no se si iesta bien*/ {
+            switch (eleccion){
                 case "1" -> {
-                    //inscribir asignatura
+                    System.out.println("Has seleccionado la opcion 1. Inscribir asignatura");
+
                     inscripcionAsignatura();
                     break;
                 }
                 case "2" -> {
-                    //eliminar asignatura
+                    System.out.println("Has seleccionado la opción 2. Eliminar asignatura por codigo.");
+                    System.out.println("NOTA: si la asignatura tiene examen definido, este será eliminado también.");
 
-                    horarioAsignaturas.mostrarHorario(false);
-                    System.out.println("Qué asignatura quieres eliminar? (Introduce el codigo)");
+                    horarioAsignaturas.mostrarHorario();
+                    System.out.println("Indique el codigo numérico de la asignatura que desea eliminar del horario.");
                     int codigoAsignatura = Integer.parseInt(sc.next());
                     horarioAsignaturas.eliminarAsignatura(codigoAsignatura);
                     break;
                 }
                 case "3" -> {
+                    System.out.println("Has seleccionado la opcion 3. Comprueba incompatibilidad del Horario.\n");
                     try {
                         horarioAsignaturas.comprobarIncompatibilidades();
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(" -- El horario es incompatible." + e); // cuenta el numero de clases que hay ese dia
                     }
 
                     //comprobar incompatibilidades
@@ -148,17 +151,18 @@ public class HorarioPOO {
 
                 }
                 case "5" -> {
-                    //mostrar horario
+                    System.out.println("Has seleccionado la opcion 5. Muestra el horario completo.\n");
                     horarioAsignaturas.mostrarHorario();
                 }
                 case "6" -> {
-                    //calcular horas
-                    System.out.printf("\nTienes en total %d horas en el horario", horarioAsignaturas.calculaHoras(DURACION_CLASES));
+                    System.out.println("Has seleccionado la opcion 6. Calcula Horas.");
+                    System.out.printf("\nLas horas lectivas de su curso son: %d", horarioAsignaturas.calculaHoras(DURACION_CLASES));
 
                 }
                 case "7" -> {
-                    //vaciar horario
+                    System.out.println("Has seleccionado la opcion 7. Vaciar el horario.\n");
                     horarioAsignaturas.vaciar();
+                    System.out.println("El horario ha sido vaciado.");
                 }
                 case "8" -> {
                     //salir del menu
