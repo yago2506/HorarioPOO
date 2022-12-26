@@ -13,8 +13,8 @@ import java.util.Arrays;
  */
 public class Horario {
 
-    private DiaSemana Dia;
-    private int Hora;
+    private DiaSemana dia;
+    private int hora;
 
     public Horario(DiaSemana dia, int hora) {
         ArrayList horas = new ArrayList<>(Arrays.asList(8, 10, 12, 15, 17, 19));
@@ -24,8 +24,8 @@ public class Horario {
                 throw new Exception("-- La asignatura no ha podido inscribirse. El horario " + hora + " no es valido.");
             }
             else{
-                Dia = dia;
-                Hora = hora;
+                this.dia = dia;
+                this.hora = hora;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -34,15 +34,15 @@ public class Horario {
     }
 
     public String toString() {
-        return "Horario{DiaSemana=%s,Hora=%d}".formatted(Dia, Hora);
+        return "Horario{DiaSemana=%s,Hora=%d}".formatted(dia, hora);
     }
 
     public int getHora() {
-        return Hora;
+        return hora;
     }
 
     public DiaSemana getDia() {
-        return Dia;
+        return dia;
     }
 
 }
