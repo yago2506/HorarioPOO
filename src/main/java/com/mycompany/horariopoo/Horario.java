@@ -19,10 +19,13 @@ public class Horario {
     public Horario(DiaSemana dia, int hora) {
         ArrayList horas = new ArrayList<>(Arrays.asList(8, 10, 12, 15, 17, 19));
         try {
-            Dia = dia;
-            Hora = hora;
             if (!horas.contains(hora)) {
+                
                 throw new Exception("-- La asignatura no ha podido inscribirse. El horario " + hora + " no es valido.");
+            }
+            else{
+                Dia = dia;
+                Hora = hora;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

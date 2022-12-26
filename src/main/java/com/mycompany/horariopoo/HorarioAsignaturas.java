@@ -53,7 +53,8 @@ public class HorarioAsignaturas {
         
         Asignatura a = new Asignatura(id, nombre);
         Horario h = new Horario(dia, hora);
-        horario.put(a, h);
+        if (h.getHora()!=0)
+            horario.put(a, h);
     }
 
     public static void inscripcionAsignatura() //inscripcion de asignatura (sin parametros; hay que preguntarle al usuario por ellos)
