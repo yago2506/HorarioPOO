@@ -1,29 +1,7 @@
 Nivel 1:
-Clase principal HorarioAsignatura
-	Constructor:
-		-new ...(grado, CursoEnum.año, Semestre.epoca)
-	metodos:
-		-IncripcionAsigantura(ID,Nombre,Practica o teoria(solo se escribe "P" si es practica),DiasemanaEnum.dia,Hora)
-		-ComprobarIncompatibilidades():
-		-mostrarHorario(),mostrarHorario("P")->con la "P" muestra solo las clases que sean practicas
-		-mostrarInformacionBasica() -> grado, curso, epoca
-		-CalculaHoras(duracionclase)
-		-Vaciar
-
+APROBADO
 Nivel 2:
-Clase Asignatura
-	new ...(ID,Nombre,Tipo (P o T)) 
-Clase Horario
-	new ...(DiasemanaEnum.dia,Hora)
-
-	metodos de ambas:
-		-añadir, 
-		-modificar -> Me dijo que podemos poner las caracteristicas que queramos a modificar, simplemente cuando mas complejo sea pues mas puntuara,
-				podemos por ejemplo hacer que el codigo sea fijo y ese no se pueda cambiar, que el nombre sea fijo, que solo se pueda cambiar una cosa,
-				modificar todo, etc (quiza lo mejor es preguntar en el menu que asignatura quiere cambiar, luego si quiere cambiar hora o algo de la asignatura y 
-				ahi pedir que vuelva a escribir todo de nuevo; entonces simplemente eliminamos el anterior y creamos uno nuevo de 0)
-		-¿eliminiar? -> este quiza no nos hace falta pero por si acaso lo pongo aqui
-
+SUSPENSO
 Nivel 3:
 Clase DiaSemanaEnum
 Clase CursoEnum
